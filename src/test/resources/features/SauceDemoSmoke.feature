@@ -31,22 +31,21 @@ Feature: Testing SauceDemo core functionality
     And inventory page is visible
     When sort the products "Price (low to high)" filter
     Then products should be sorted accordingly
-   
-   
-  Scenario Outline: Standard user is able to complete purchase of order
-  Given user is logged in with username "<username>" and password "<password>"
-  And inventory page is visible
-  When add product "<product>" to the shopping cart
-  And navigate to the shopping cart page
-  And the "<product>" product should be on the shopping cart
-  And click on the checkout button
-  And enter first name "<firstName>", last name "<lastName>" and postal code "<postalCode>" on the checkout data form
-  And click continue button
-  And user see a summary page
-  And click Finish button
-  Then "<confirmationMessage>" message is displayed on the screen
 
-Examples:
-  | username       | password      | product                | firstName | lastName | postalCode | confirmationMessage           |
-  | standard_user  | secret_sauce  | Sauce Labs Backpack    | Test      | User     | 4544       | Thank you for your order!     |
-  |standard_user   | secret_sauce  | Sauce Labs Bike Light  | Test New  | User New | 1234       | Thank you for your order!     |
+  Scenario Outline: User is able to complete purchase of order
+    Given user is logged in with username "<username>" and password "<password>"
+    And inventory page is visible
+    When add product "<product>" to the shopping cart
+    And navigate to the shopping cart page
+    And the "<product>" product should be on the shopping cart
+    And click on the checkout button
+    And enter first name "<firstName>", last name "<lastName>" and postal code "<postalCode>" on the checkout data form
+    And click continue button
+    And user see a summary page
+    And click Finish button
+    Then "<confirmationMessage>" message is displayed on the screen
+
+    Examples: 
+      | username                | password     | product               | firstName | lastName | postalCode | confirmationMessage       |
+      | standard_user           | secret_sauce | Sauce Labs Backpack   | Test      | User     |       4544 | Thank you for your order! |
+      | performance_glitch_user | secret_sauce | Sauce Labs Bike Light | Test New  | User New |       1234 | Thank you for your order! |
